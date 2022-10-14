@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t lanzvencer/react-test -f ./client/Dockerfile.dev ./client
+
+script: 
+  - docker run lanzvencer/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t lanzvencer/mult-client ./client
+  - docker build -t lanzvencer/multi-nginx ./nginx
+  - docker build -t lanzvencer/multi-server ./server
+  - docker build -t lanzvencer/multi-worker ./worker
