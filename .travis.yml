@@ -9,7 +9,7 @@ script:
   - docker run -e CI=true vencerlanz/react-test npm test
 
 after_success:
-  - docker build -t vencerlanz/mult-client ./client
+  - docker build -t vencerlanz/multi-client ./client
   - docker build -t vencerlanz/multi-nginx ./nginx
   - docker build -t vencerlanz/multi-server ./server
   - docker build -t vencerlanz/multi-worker ./worker
